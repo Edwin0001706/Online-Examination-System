@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Examination System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#eef2f7; margin:0; }
+        header { background:#1f3c88; color:white; padding:24px; text-align:center; }
+        .container { max-width:850px; margin:30px auto; padding:20px; }
+        .card { background:white; padding:25px; margin-bottom:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
+        input { width:90%; padding:12px; margin:8px 0; border:1px solid #ccc; border-radius:6px; }
+        button { padding:12px 20px; border:0; border-radius:6px; background:#1f3c88; color:white; cursor:pointer; margin-top:8px; }
+        button:hover { opacity:.9; }
+        .hidden { display:none; }
+        .question { margin:18px 0; padding:15px; background:#f7f9fc; border-radius:8px; }
+        .result { font-size:20px; font-weight:bold; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Online Examination System</h1>
+    <p>Simple Student Examination Portal</p>
+</header>
+
+<div class="container">
+    <div class="card" id="loginCard">
+        <h2>Student Login</h2>
+        <input id="username" type="text" placeholder="Enter username">
+        <input id="password" type="password" placeholder="Enter password">
+        <br>
+        <button onclick="login()">Login</button>
+        <p id="loginMessage"></p>
+    </div>
+
+    <div class="card hidden" id="examCard">
+        <h2>Java Programming Examination</h2>
+        <p><b>Duration:</b> 60 Minutes</p>
+        <p><b>Total Questions:</b> 3</p>
+        <hr>
+
+        <div class="question">
+            <p>1. Which keyword is used to create a class in Java?</p>
+            <label><input type="radio" name="q1" value="A"> A. class</label><br>
+            <label><input type="radio" name="q1" value="B"> B. create</label><br>
+            <label><input type="radio" name="q1" value="C"> C. newclass</label>
+        </div>
+
+        <div class="question">
+            <p>2. Which method is the starting point of a Java program?</p>
+            <label><input type="radio" name="q2" value="A"> A. start()</label><br>
+            <label><input type="radio" name="q2" value="B"> B. main()</label><br>
+            <label><input type="radio" name="q2" value="C"> C. run()</label>
+        </div>
+
+        <div class="question">
+            <p>3. Which data type stores true or false?</p>
+            <label><input type="radio" name="q3" value="A"> A. int</label><br>
+            <label><input type="radio" name="q3" value="B"> B. String</label><br>
+            <label><input type="radio" name="q3" value="C"> C. boolean</label>
+        </div>
+
+        <button onclick="submitExam()">Submit Examination</button>
+        <p id="result" class="result"></p>
+    </div>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username && password) {
+        document.getElementById("loginCard").classList.add("hidden");
+        document.getElementById("examCard").classList.remove("hidden");
+    } else {
+        document.getElementById("loginMessage").textContent = "Please enter username and password.";
+    }
+}
+
+function submitExam() {
+    let score = 0;
+    if (document.querySelector('input[name="q1"]:checked')?.value === "A") score++;
+    if (document.querySelector('input[name="q2"]:checked')?.value === "B") score++;
+    if (document.querySelector('input[name="q3"]:checked')?.value === "C") score++;
+
+    document.getElementById("result").textContent =
+        "Your result: " + score + " / 3";
+}
+</script>
+</body>
+</html>

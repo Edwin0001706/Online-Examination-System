@@ -1,0 +1,6 @@
+ONLINE EXAMINATION SYSTEM
+
+Subject: Java Programming
+Duration: 60 Minutes
+Total Questions: 20
+Passing Marks: 40
